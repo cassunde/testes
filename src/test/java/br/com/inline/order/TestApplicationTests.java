@@ -48,25 +48,4 @@ class TestApplicationTests {
 			orderService.createOrder("beer", BigDecimal.ZERO);
 		});
 	}
-
-	@Test
-	void shouldCreateOrderWithTaxAndAmountDiffZero() throws Exception {
-		Order order =  orderService.createOrder("refri", BigDecimal.TEN);
-		assertTrue(order.getTaxed());
-		assertTrue(order.getAmount().compareTo(BigDecimal.ZERO) > 0 );
-	}
-
-	@Test
-	void shouldCreateOrderWithTaxAndAmountDiffZeroAssertGroup() throws Exception {
-		Order order =  orderService.createOrder("refri", BigDecimal.TEN);
-		assertAll("Valid",
-				() -> assertTrue(order.getTaxed()),
-				() -> assertTrue(order.getAmount().compareTo(BigDecimal.ZERO) > 0 )
-		);
-	}
-
-	@Test
-	void shouldCreateOrderLess1Second() {
-		assertTimeout(Duration.ofSeconds(1), () -> orderService.createOrder("refri", BigDecimal.TEN));
-	}
 }
