@@ -41,11 +41,4 @@ class TestApplicationTests {
 		Order order = orderService.sendEmail(orderService.createOrder("refri", BigDecimal.valueOf(10)));
 			assertFalse(order.getSentEmail());
 	}
-
-	@Test
-	void shouldThrowException() {
-		assertThrows(Exception.class, ()-> {
-			orderService.createOrder("beer", BigDecimal.ZERO);
-		});
-	}
 }

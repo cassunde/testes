@@ -20,7 +20,7 @@ public class OrderController {
     private OrderService orderService;
 
     @PostMapping
-    private ResponseEntity createOrder(@RequestBody OrderRequest orderRequest) throws Exception  {
+    private ResponseEntity createOrder(@RequestBody OrderRequest orderRequest)  {
         Order order = orderService.registerOrder(orderRequest.getProduct(), orderRequest.getAmount());
         return ResponseEntity.accepted().body(order);
     }

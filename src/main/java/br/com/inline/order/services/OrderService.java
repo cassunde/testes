@@ -7,11 +7,7 @@ import java.math.BigDecimal;
 
 @Component
 public class OrderService {
-    public Order createOrder(String product, BigDecimal amount) throws Exception {
-
-        if(amount.compareTo(BigDecimal.ZERO) == 0){
-            throw new Exception();
-        }
+    public Order createOrder(String product, BigDecimal amount) {
 
         if(product.equals("beer")){
             System.out.println("orde taxada");
@@ -21,7 +17,7 @@ public class OrderService {
         return new Order(product, amount);
     }
 
-    public Order registerOrder(String product, BigDecimal amount) throws Exception {
+    public Order registerOrder(String product, BigDecimal amount) {
         Order order = createOrder(product, amount);
         sendEmail(order);
         return order;
