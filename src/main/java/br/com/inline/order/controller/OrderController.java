@@ -1,5 +1,6 @@
 package br.com.inline.order.controller;
 
+import br.com.inline.order.exception.OrderInvalidException;
 import br.com.inline.order.model.Order;
 import br.com.inline.order.model.OrderRequest;
 import br.com.inline.order.services.OrderService;
@@ -10,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.math.BigDecimal;
-
 @RestController
 @RequestMapping("order")
 public class OrderController {
@@ -20,7 +19,7 @@ public class OrderController {
     private OrderService orderService;
 
     @PostMapping
-    private ResponseEntity createOrder(@RequestBody OrderRequest orderRequest)  {
+    private ResponseEntity createOrder(@RequestBody OrderRequest orderRequest) throws OrderInvalidException {
         Order order = orderService.registerOrder(orderRequest.getProduct(), orderRequest.getAmount());
         return ResponseEntity.accepted().body(order);
     }
